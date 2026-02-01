@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💗</title>
+
+  <!-- Cute Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffd6e8, #fff1f7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Quicksand', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 45px 50px;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(255, 105, 180, 0.25);
+      position: relative;
+      max-width: 420px;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #ff5d8f;
+      font-size: 2.6rem;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 1.15rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 90px;
+    }
+
+    button {
+      padding: 14px 34px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 600;
+    }
+
+    #yes {
+      background: #ff5d8f;
+      color: white;
+      box-shadow: 0 10px 20px rgba(255, 93, 143, 0.4);
+      margin-right: 20px;
+    }
+
+    #yes:hover {
+      transform: scale(1.12);
+      box-shadow: 0 15px 30px rgba(255, 93, 143, 0.5);
+    }
+
+    #no {
+      background: #f1f1f1;
+      color: #777;
+      position: absolute;
+    }
+
+    .footnote {
+      margin-top: 22px;
+      font-size: 0.85rem;
+      color: #999;
+      font-style: italic;
+    }
+
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 22px;
+      animation: float 6s linear infinite;
+      opacity: 0.75;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(110vh) scale(1);
+      }
+      to {
+        transform: translateY(-10vh) scale(1.6);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Will you be my Valentine? 🌸</h1>
+    <p>
+      Pinky promise: cuddles, snacks,<br>
+      and being cute together 🧸💞
+    </p>
+
+    <div class="buttons">
+      <button id="yes" onclick="yesClicked()">Yes, obviously 💗</button>
+      <button id="no">Nope 🙈</button>
+    </div>
+
+    <div class="footnote">
+      *the “no” is a little shy*
+    </div>
+  </div>
+
+  <div class="hearts"></div>
+
+  <script>
+    const noButton = document.getElementById("no");
+
+    noButton.addEventListener("mouseenter", () => {
+      const x = Math.random() * 320 - 160;
+      const y = Math.random() * 220 - 110;
+      noButton.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    function yesClicked() {
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          background:linear-gradient(135deg,#ffd6e8,#fff1f7);
+          font-family:'Pacifico', cursive;
+          text-align:center;">
+          <h1 style="color:#ff5d8f;font-size:3.2rem;">
+            YAYYY 💞🥹<br>
+            I knew you’d say yes 🌷
+          </h1>
+        </div>
+      `;
+    }
+
+    const heartsContainer = document.querySelector(".hearts");
+
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = Math.random() > 0.5 ? "💗" : "🌸";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 7000);
+    }, 320);
+  </script>
+
+</body>
+</html>
